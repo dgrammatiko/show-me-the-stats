@@ -1,5 +1,7 @@
 import { render, html } from 'uhtml' //'https://unpkg.com/uhtml?module';
 
+window.renderData = [];
+
 const lazyload = (element) => {
   const io = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
@@ -13,14 +15,43 @@ const lazyload = (element) => {
   io.observe(element);
 };
 
-const renderCard = (item, i) => {
-  return html`<li class="card" .dataset=${{ i: i }}>
+const loadmore = (element) => {
+  const io = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const triggerUpdate = parseInt(element.dataset.length, 10) === parseInt(element.dataset.i, 10) + 1;
+        if (parseInt(element.dataset.i, 10) + 1 < parseInt(element.dataset.length, 10)) {
+          observer.disconnect();
+        }
+
+        if (triggerUpdate) {
+          window.renderData = window.allData.slice(0, parseInt(element.dataset.length, 10) + 10);
+          observer.disconnect();
+          renderApp();
+        }
+
+      }
+    });
+  });
+
+  io.observe(element);
+};
+
+const renderApp = () => render(
+  document.getElementById("content"),
+  html`<ul class="cards">
+  ${ renderData.map((item, i) => renderCard(item, i, renderData.length))}
+    </ul> `
+);
+
+const renderCard = (item, i, length) => {
+  return html`<li class="card" ref=${loadmore} .dataset=${{ i: i, length: length }} >
     <div class="card-header">
       <a href="${item.href}"><h3>${item.title}</h3></a>
     </div>
     <div class="card-body">
       <picture class="card-image">
-        <img loading="lazy" .dataset=${{ src: `/images/small/${btoa((new URL(item.href)).origin)}.jpg` }} alt=${item.imageAlt} ref = ${lazyload} />
+        <img loading="lazy" .dataset=${{ src: `/images/small/${btoa((new URL(item.href)).origin)}.jpg` }} alt=${item.imageAlt} ref=${lazyload} />
       </picture>
       <div class="card-details">
         <ul>
@@ -54,13 +85,9 @@ const renderCard = (item, i) => {
 };
 
 const dataString = document.querySelector('#data-source').innerHTML
-const data = JSON.parse(dataString);
+window.allData = JSON.parse(dataString);
+window.renderData = window.allData.slice(0, 10)
 
-if (data) {
-  render(
-    document.getElementById("content"),
-    html`<ul class="cards">
-  ${ data.map((item, i) => renderCard(item, i))}
-    </ul> `
-  );
+if (window.renderData) {
+  renderApp()
 }
