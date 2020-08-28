@@ -45,8 +45,8 @@ const data = JSON.parse(dataString);
 if (data) {
   render(
     document.getElementById("content"),
-    html`<ul class="cards">
+    html`< ul class="cards" >
   ${ data.map((item, i) => renderCard(item, i))}
-    </ul> `
+    </ul > `
   );
 }
