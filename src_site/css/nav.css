@@ -5,11 +5,13 @@ nav {
   padding-right: 30px;
   display: flex;
   justify-content: center;
+  font-size: 1.2rem;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
+  padding: 0;
 }
 
 .nav-item a,

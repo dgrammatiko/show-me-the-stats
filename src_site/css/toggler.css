@@ -1,10 +1,10 @@
 dark-light-switch {
-	position: relative;
-	display: block;
-	top: .8rem;
-	width: 10px;
-	height: 44px;
-	margin-left: 10px;
+  position: relative;
+  display: block;
+  top: .3rem;
+  width: 10px;
+  height: 44px;
+  margin-left: 10px;
 }
 
 dark-light-switch button {
@@ -12,7 +12,7 @@ dark-light-switch button {
   font-weight: 100;
   letter-spacing: 0;
   padding: 0;
-  text-transform:none;
+  text-transform: none;
   top: 0;
   left: 0;
   right: 0;
@@ -20,6 +20,7 @@ dark-light-switch button {
   color: transparent;
   background-color: #000;
   height: 15px;
+  width: 40px;
   border: 0;
   font-size: 0.3rem;
   -webkit-transition: 0.4s;
@@ -27,13 +28,13 @@ dark-light-switch button {
   box-shadow: none;
 }
 
-dark-light-switch button:hover, dark-light-switch button:focus {
-  box-shadow: 0px 0px 12px 3px rgba(255,255,255,0.75);
+dark-light-switch button:hover,
+dark-light-switch button:focus {
   color: transparent;
 }
 
-dark-light-switch button[aria-pressed="true"]:hover, dark-light-switch button[aria-pressed="true"]:focus {
-  box-shadow: 0px 0px 12px 3px rgba(255,255,255,0.75);
+dark-light-switch button[aria-pressed="true"]:hover,
+dark-light-switch button[aria-pressed="true"]:focus {
   color: transparent;
   background-color: #000;
 }
