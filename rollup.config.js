@@ -18,7 +18,7 @@ export default [{
   context: "null",
   moduleContext: "null",
   output: {
-    file: "live/js/data.toggler.esm.js",
+    file: "live/js/toggler.esm.js",
     format: "esm",
   },
 },
@@ -26,7 +26,7 @@ export default [{
   input: "node_modules/ce-theme-switcher/src/index.js",
   plugins: [resolve(), minifyHTML(), terser()],
   output: {
-    file: "live/js/data.toggler.es5.js",
+    file: "live/js/toggler.es5.js",
     format: "iife",
   },
 }
