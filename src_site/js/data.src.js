@@ -15,28 +15,42 @@ const lazyload = (element) => {
 
 const renderCard = (item, i) => {
   return html`<li class="card" .dataset=${{ i: i }}>
-    <div style="height: 3rem">
+    <div class="card-header">
       <a href="${item.href}"><h3>${item.title}</h3></a>
     </div>
-    <picture>
-      <img loading="lazy" .dataset=${{ src: `/images/small/${btoa((new URL(item.href)).origin)}.jpg` }} alt = ${item.imageAlt} ref = ${lazyload} />
-    </picture >
-  <ul>
-    <li>Performace: ${Math.round(item.metrics.performance)}%</li>
-    <li>
-      First contentful paint:
-        ${item.metrics.firstContentfulPaint.toFixed(2)}Sec
-      </li>
-    <li>Best practices: ${Math.round(item.metrics.bestPractices)}%</li>
-    <li>Accessibility: ${Math.round(item.metrics.accessibility)}%</li>
-    <li>SEO: ${Math.round(item.metrics.seo)}%</li>
-    <li>carbon footprint: ${item.metrics.carbon.toFixed(3)}</li>
-  </ul>
-  <details>
-    <summary>Description</summary>
-    <p>${item.text}</p>
-  </details>
-  </li > `;
+    <div class="card-body">
+      <picture class="card-image">
+        <img loading="lazy" .dataset=${{ src: `/images/small/${btoa((new URL(item.href)).origin)}.jpg` }} alt = ${item.imageAlt} ref = ${lazyload} />
+      </picture>
+      <div class="card-details">
+        <ul>
+          <li>
+            Performace: <span>${Math.round(item.metrics.performance)}%</span>
+          </li>
+          <li>
+            First contentful paint:
+            <span>${item.metrics.firstContentfulPaint.toFixed(2)}Sec </span>
+          </li>
+          <li>
+            Best practices:
+            <span>${Math.round(item.metrics.bestPractices)}%</span>
+          </li>
+          <li>
+            Accessibility:
+            <span>${Math.round(item.metrics.accessibility)}%</span>
+          </li>
+          <li>SEO: <span>${Math.round(item.metrics.seo)}%</span></li>
+          <li>
+            carbon footprint: <span>${item.metrics.carbon.toFixed(3)}</span>
+          </li>
+        </ul>
+        <details>
+          <summary>Description</summary>
+          <p>${item.text}</p>
+        </details>
+      </div>
+    </div>
+  </li>`;
 };
 
 const dataString = document.querySelector('#data-source').innerHTML
