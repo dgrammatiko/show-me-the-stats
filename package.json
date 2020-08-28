@@ -6,7 +6,7 @@
         "rollup": "rollup --config rollup.config.js",
         "build": "npx eleventy build",
         "scrape": "node ./scripts/scrape.js",
-        "deploy": "rollup && build"
+        "deploy": "npm run rollup && npm run build"
     },
     "author": "Dimitris Grammatikogiannis",
     "license": "MIT",
