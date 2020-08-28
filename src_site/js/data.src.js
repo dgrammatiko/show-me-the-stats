@@ -19,24 +19,24 @@ const renderCard = (item, i) => {
       <a href="${item.href}"><h3>${item.title}</h3></a>
     </div>
     <picture>
-      <img loading="lazy" .dataset=${{ src: item.imageSrc ? item.imageSrc.replace('/images/', '/images/thumbs/') : '' }} alt=${item.imageAlt} ref=${lazyload}/>
-    </picture>
-    <ul>
-      <li>Performace: ${Math.round(item.metrics.performance)}%</li>
-      <li>
-        First contentful paint:
+      <img loading="lazy" .dataset=${{ src: `/images/small/${btoa((new URL(item.href)).origin)}.jpg` }} alt = ${item.imageAlt} ref = ${lazyload} />
+    </picture >
+  <ul>
+    <li>Performace: ${Math.round(item.metrics.performance)}%</li>
+    <li>
+      First contentful paint:
         ${item.metrics.firstContentfulPaint.toFixed(2)}Sec
       </li>
-      <li>Best practices: ${Math.round(item.metrics.bestPractices)}%</li>
-      <li>Accessibility: ${Math.round(item.metrics.accessibility)}%</li>
-      <li>SEO: ${Math.round(item.metrics.seo)}%</li>
-      <li>carbon footprint: ${item.metrics.carbon.toFixed(3)}</li>
-    </ul>
-    <details>
-      <summary>Description</summary>
-      <p>${item.text}</p>
-    </details>
-  </li>`;
+    <li>Best practices: ${Math.round(item.metrics.bestPractices)}%</li>
+    <li>Accessibility: ${Math.round(item.metrics.accessibility)}%</li>
+    <li>SEO: ${Math.round(item.metrics.seo)}%</li>
+    <li>carbon footprint: ${item.metrics.carbon.toFixed(3)}</li>
+  </ul>
+  <details>
+    <summary>Description</summary>
+    <p>${item.text}</p>
+  </details>
+  </li > `;
 };
 
 const dataString = document.querySelector('#data-source').innerHTML
@@ -46,7 +46,7 @@ if (data) {
   render(
     document.getElementById("content"),
     html`<ul class="cards">
-      ${data.map((item, i) => renderCard(item, i))}
-    </ul>`
+  ${ data.map((item, i) => renderCard(item, i))}
+    </ul> `
   );
 }
