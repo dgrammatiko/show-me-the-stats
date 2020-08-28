@@ -1,4 +1,4 @@
-import { render, html } from "uhtml";
+import { render, html } from 'https://unpkg.com/uhtml?module';
 
 const lazyload = (element) => {
   const io = new IntersectionObserver((entries, observer) => {
