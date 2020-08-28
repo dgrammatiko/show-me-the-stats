@@ -25,7 +25,7 @@ module.exports = function (eleventyConfig) {
     return content;
   });
 
-  eleventyConfig.addPassthroughCopy('src_site/js', 'live/js');
+  // eleventyConfig.addPassthroughCopy('src_site/js', 'live/js');
   eleventyConfig.addPassthroughCopy('src_site/css', 'live/css');
   eleventyConfig.addPassthroughCopy('data/final.json', 'live/final.json');
   eleventyConfig.addPassthroughCopy('src_site/images');
