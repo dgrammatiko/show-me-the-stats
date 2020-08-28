@@ -1,0 +1,10 @@
+---
+layout: base.njk
+title: All the data from showcase.joomla.org
+---
+<script src="/js/data.esm.js" type="module" defer></script>
+<style>{{ 'css/data.css' | inlineCss | safe }}</style>
+<script id="data-source" type="application/json">{{ allTheData | dump | safe }}</script>
+<div id="content">
+    <h1> Please wait, we're loading the required data...</h1>
+</div>
