@@ -20,7 +20,7 @@ const renderCard = (item, i) => {
     </div>
     <div class="card-body">
       <picture class="card-image">
-        <img loading="lazy" .dataset=${{ src: item.imageSrc ? item.imageSrc.replace('/images/', '/images/thumbs/') : '' }} alt=${item.imageAlt} ref=${lazyload}/>
+        <img loading="lazy" .dataset=${{ src: `/images/small/${btoa((new URL(item.href)).origin)}.jpg` }} alt = ${item.imageAlt} ref = ${lazyload} />
       </picture>
       <div class="card-details">
         <ul>
@@ -60,7 +60,7 @@ if (data) {
   render(
     document.getElementById("content"),
     html`<ul class="cards">
-      ${data.map((item, i) => renderCard(item, i))}
-    </ul>`
+  ${ data.map((item, i) => renderCard(item, i))}
+    </ul> `
   );
 }
