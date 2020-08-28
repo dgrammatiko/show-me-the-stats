@@ -27,7 +27,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('src_site/js', 'live/js');
   eleventyConfig.addPassthroughCopy('src_site/css', 'live/css');
   eleventyConfig.addPassthroughCopy('data/final.json', 'live/final.json');
-  eleventyConfig.addPassthroughCopy('images', 'live/images');
+  eleventyConfig.addPassthroughCopy('src_site/images');
 
   return {
     pathPrefix: "/",

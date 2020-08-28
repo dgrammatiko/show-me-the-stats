@@ -23,7 +23,7 @@ module.exports = async (file) => {
         position: 'top',
       },
       quality: 70,
-      filename: file.toLowerCase().replace(`src_images`, `src_site/images`).replace('.png', `.jpg`),
+      filename: file.replace(`src_images`, `src_site/images`).replace('.png', `.jpg`),
       type: 'jpeg'
     },
     {
@@ -35,7 +35,7 @@ module.exports = async (file) => {
         position: 'top',
       },
       quality: 70,
-      filename: file.toLowerCase().replace(`src_images`, `src_site/images`).replace('.png', `.webp`),
+      filename: file.replace(`src_images`, `src_site/images`).replace('.png', `.webp`),
       type: 'webp'
     },
     {
@@ -47,7 +47,7 @@ module.exports = async (file) => {
         position: 'top',
       },
       quality: 60,
-      filename: file.toLowerCase().replace(`src_images`, `src_site/images/thumbs`).replace('.png', `.jpg`),
+      filename: file.replace(`src_images`, `src_site/images/thumbs`).replace('.png', `.jpg`),
       type: 'jpeg'
     },
     {
@@ -59,7 +59,7 @@ module.exports = async (file) => {
         position: 'top',
       },
       quality: 60,
-      filename: file.toLowerCase().replace(`src_images`, `src_site/images/thumbs`).replace('.png', `.webp`),
+      filename: file.replace(`src_images`, `src_site/images/thumbs`).replace('.png', `.webp`),
       type: 'webp'
     }
   ].map(resize))

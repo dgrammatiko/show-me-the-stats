@@ -11,15 +11,16 @@
     "license": "MIT",
     "devDependencies": {
         "@11ty/eleventy": "0.11.0",
+        "glob": "^7.1.6",
         "html-minifier": "4.0.0",
+        "image-downloader": "^4.0.1",
         "puppeteer": "3.3.0",
+        "request": "^2.88.2",
         "rollup": "2.16.1",
         "rollup-plugin-minify-html-literals": "1.2.4",
         "rollup-plugin-node-resolve": "5.2.0",
         "rollup-plugin-terser": "6.1.0",
-        "sharp": "0.25.4",
-        "image-downloader": "^4.0.1",
-        "request": "^2.88.2"
+        "sharp": "0.25.4"
     },
     "dependencies": {
         "ce-theme-switcher": "0.0.3",

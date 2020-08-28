@@ -14,19 +14,12 @@ const lazyload = (element) => {
 };
 
 const renderCard = (item, i) => {
-  const url = `Screenshot of ${new URL(item.href).hostname
-    .replace("www.", "")
-    .replace(/\//, " ")}`;
-  const src =
-    item.metrics.performance === 0
-      ? ""
-      : `/images/thumbs/${new URL(item.href).hostname.replace("www.", "")}.jpg`;
   return html`<li class="card" .dataset=${{ i: i }}>
     <div style="height: 3rem">
       <a href="${item.href}"><h3>${item.title}</h3></a>
     </div>
     <picture>
-      <img loading="lazy" .dataset=${{ src: src }} alt=${url} ref=${lazyload}/>
+      <img loading="lazy" .dataset=${{ src: item.imageSrc ? item.imageSrc.replace('/images/', '/images/thumbs/') : '' }} alt=${item.imageAlt} ref=${lazyload}/>
     </picture>
     <ul>
       <li>Performace: ${Math.round(item.metrics.performance)}%</li>
