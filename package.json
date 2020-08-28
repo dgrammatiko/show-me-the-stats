@@ -16,7 +16,7 @@
     "html-minifier": "4.0.0",
     "image-downloader": "4.0.1",
     "puppeteer": "3.3.0",
-    "request": "^2.88.2",
+    "request": "2.88.2",
     "rollup": "2.26.7",
     "rollup-plugin-minify-html-literals": "1.2.5",
     "rollup-plugin-node-resolve": "5.2.0",
