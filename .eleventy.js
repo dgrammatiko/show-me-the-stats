@@ -1,3 +1,4 @@
+const { spawn } = require('child_process');
 const htmlmin = require("html-minifier");
 const fs = require("fs");
 
@@ -29,6 +30,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('data/final.json', 'live/final.json');
   eleventyConfig.addPassthroughCopy('src_site/images');
 
+  eleventyConfig.on('afterBuild', () => {
+    spawn('./node_modules/.bin/rollup', ['-c', 'rollup.config.js']);
+  });
+
   return {
     pathPrefix: "/",
     passthroughFileCopy: true,
@@ -38,3 +43,5 @@ module.exports = function (eleventyConfig) {
     },
   };
 };
+
+
