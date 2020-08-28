@@ -1,14 +1,18 @@
 const { existsSync, mkdirSync } = require('fs');
+const path = require('path');
 const sharp = require('sharp');
 
 if (!existsSync('src_site/images')) {
   mkdirSync('src_site/images');
-  if (!existsSync('src_site/images/thumbs')) {
-    mkdirSync('src_site/images/thumbs');
+  if (!existsSync('src_site/images/small')) {
+    mkdirSync('src_site/images/small');
+  }
+  if (!existsSync('src_site/images/large')) {
+    mkdirSync('src_site/images/large');
   }
 }
 
-module.exports = async (file) => {
+module.exports = async (file, name) => {
   const resize = data => {
     return sharp(data.file).resize(data.resize)[data.type](data.quality).toFile(data.filename);
   };
@@ -23,7 +27,7 @@ module.exports = async (file) => {
         position: 'top',
       },
       quality: 70,
-      filename: file.replace(`src_images`, `src_site/images`).replace('.png', `.jpg`),
+      filename: `src_site/images/large/${name}.jpg`,
       type: 'jpeg'
     },
     {
@@ -35,7 +39,7 @@ module.exports = async (file) => {
         position: 'top',
       },
       quality: 70,
-      filename: file.replace(`src_images`, `src_site/images`).replace('.png', `.webp`),
+      filename: `src_site/images/large/${name}.webp`,
       type: 'webp'
     },
     {
@@ -47,7 +51,7 @@ module.exports = async (file) => {
         position: 'top',
       },
       quality: 60,
-      filename: file.replace(`src_images`, `src_site/images/thumbs`).replace('.png', `.jpg`),
+      filename: `src_site/images/small/${name}.jpg`,
       type: 'jpeg'
     },
     {
@@ -59,7 +63,7 @@ module.exports = async (file) => {
         position: 'top',
       },
       quality: 60,
-      filename: file.replace(`src_images`, `src_site/images/thumbs`).replace('.png', `.webp`),
+      filename: `src_site/images/small/${name}.webp`,
       type: 'webp'
     }
   ].map(resize))

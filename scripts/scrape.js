@@ -2,8 +2,12 @@ const puppeteer = require('puppeteer');
 const request = require('request');
 const path = require('path');
 const thumbs = require('./process-images.js');
-const { existsSync, createWriteStream } = require('fs');
+const { existsSync, createWriteStream, mkdirSync } = require('fs');
 const { writeFile } = require('fs').promises;
+
+if (!existsSync('src_images')) {
+  mkdirSync('src_images');
+}
 
 let start = process.hrtime();
 const baseUrl = 'https://showcase.joomla.org';
@@ -68,12 +72,19 @@ const download = (url, path, callback) => {
       await page.content();
       // Scrape some data
       const href = await page.evaluate(() => {
-        const href = document.querySelector('.visit-site')
+        let href = document.querySelector('.visit-site')
 
-        return href ? href.href : '';
+        if (href.href) {
+          const x = new URL(href.href);
+          href = x.origin;
+        } else {
+          href = '';
+        }
+
+        return href;
       });
       const title = await page.evaluate(() => {
-        const title = document.querySelector('.visit-title')
+        const title = document.querySelector('.site-title')
 
         return title ? title.innerText : '';
       });
@@ -99,15 +110,15 @@ const download = (url, path, callback) => {
       if (image.src) {
         const ext = path.extname(image.src).toLowerCase();
         const filename = (Buffer.from(href)).toString('base64');
-        if (!existsSync(`src_images/${filename}${ext}`)) {
+        const file = `src_images/${filename}${ext}`;
+        if (!existsSync(file)) {
           console.log(image.src)
-          download(`${image.src}`, `src_images/${filename}${ext}`, async () => {
-            console.log(`Downloaded: src_images/${filename}${ext} ✅`)
-            await thumbs(`src_images/${filename}${ext}`);
-
+          download(`${image.src}`, file, async () => {
+            console.log(`Downloaded: ${file} ✅`)
+            await thumbs(file, filename);
           });
         }
-        tmpData.imageSrc = `/images/${filename}${ext}`;
+        tmpData.imageSrc = `${filename}`;
         tmpData.imageAlt = image.alt || '';
       }
 
