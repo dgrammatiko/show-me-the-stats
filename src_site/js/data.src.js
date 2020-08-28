@@ -20,7 +20,7 @@ const renderCard = (item, i) => {
     </div>
     <div class="card-body">
       <picture class="card-image">
-        <img loading="lazy" .dataset=${{ src: `/images/small/${btoa((new URL(item.href)).origin)}.jpg` }} alt = ${item.imageAlt} ref = ${lazyload} />
+        <img loading="lazy" .dataset=${{ src: `/images/small/${btoa((new URL(item.href)).origin)}.jpg` }} alt=${item.imageAlt} ref = ${lazyload} />
       </picture>
       <div class="card-details">
         <ul>

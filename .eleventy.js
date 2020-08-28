@@ -25,7 +25,15 @@ module.exports = function (eleventyConfig) {
     return content;
   });
 
-  // eleventyConfig.addPassthroughCopy('src_site/js', 'live/js');
+  // Get the first `n` elements of a collection.
+  eleventyConfig.addFilter("head", (array, n) => {
+    if (n < 0) {
+      return array.slice(n);
+    }
+
+    return array.slice(0, n);
+  });
+
   eleventyConfig.addPassthroughCopy('src_site/css', 'live/css');
   eleventyConfig.addPassthroughCopy('data/final.json', 'live/final.json');
   eleventyConfig.addPassthroughCopy('src_site/images');
