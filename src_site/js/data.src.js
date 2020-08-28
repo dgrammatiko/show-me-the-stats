@@ -21,12 +21,12 @@ const renderCard = (item, i) => {
     item.metrics.performance === 0
       ? ""
       : `/images/thumbs/${new URL(item.href).hostname.replace("www.", "")}.jpg`;
-  return html` <li class="card" .dataset=${{ i: i }}>
+  return html`<li class="card" .dataset=${{ i: i }}>
     <div style="height: 3rem">
       <a href="${item.href}"><h3>${item.title}</h3></a>
     </div>
     <picture>
-      <img loading="lazy" .dataset=${{ src: src }} alt=${url} />
+      <img loading="lazy" .dataset=${{ src: src }} alt=${url} ref=${lazyload}/>
     </picture>
     <ul>
       <li>Performace: ${Math.round(item.metrics.performance)}%</li>
@@ -52,69 +52,8 @@ const data = JSON.parse(dataString);
 if (data) {
   render(
     document.getElementById("content"),
-    html` <blockquote>
-      <p>
-        <b
-          >Data from Joomla's
-          <a rel="external" href="https://showcase.joomla.org"
-            >Showcase Directory</a
-          ></b
-        >
-      </p>
-    </blockquote>
-    <ul class="cards">
+    html`<ul class="cards">
       ${data.map((item, i) => renderCard(item, i))}
     </ul>`
   );
-
-  const images = [].slice.call(
-    document.querySelectorAll('img[loading="lazy"]')
-  );
-  images.forEach(lazyload);
 }
-
-
-
-
-// fetch("/final.json")
-//   .then((response) => {
-//     debugger;
-//     if (response.status >= 200 && response.status < 300) {
-//       return Promise.resolve(response);
-//     } else {
-//       return Promise.reject(new Error(response.statusText));
-//     }
-//   })
-//   .then((response) => {
-//     return response.json();
-//   })
-//   .then((data) => {
-//     render(
-//       document.getElementById("content"),
-//       html` <blockquote>
-//           <p>
-//             <b
-//               >Data from Joomla's
-//               <a rel="external" href="https://showcase.joomla.org"
-//                 >Showcase Directory</a
-//               ></b
-//             >
-//           </p>
-//         </blockquote>
-//         <ul class="cards">
-//           ${data.map((item, i) => renderCard(item, i))}
-//         </ul>`
-//     );
-
-//     const images = [].slice.call(
-//       document.querySelectorAll('img[loading="lazy"]')
-//     );
-//     images.forEach(lazyload);
-//   })
-//   .catch((error) => {
-//     render(
-//       document.getElementById("content"),
-//       html`<h1>💩, that wasn't expected</h1>`
-//     );
-//     console.log("Request failed", error);
-//   });
