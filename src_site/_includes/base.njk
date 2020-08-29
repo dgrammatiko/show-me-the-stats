@@ -24,7 +24,7 @@
 
     {% include "modal.njk" %}
     <script id="data-source" type="application/json">
-      {{ allTheData | dump | safe }}
+      {{ prerenderData | dump | safe }}
     </script>
   </body>
 

@@ -2,9 +2,11 @@ import { render, html } from 'uhtml';
 import { store } from './store.js';
 import { loadmore } from './observer.js';
 
+document.store = store;
+
 document.addEventListener('updated', () => render(
   document.getElementById("content"),
-  html`<ul class="cards">${store.data.map((item, i) => renderCard(item, i, store.data.length, allData.length))}</ul>`
+  html`<ul class="cards">${document.store.data.map((item, i) => renderCard(item, i, document.store.data.length, document.data.length))}</ul>`
 ));
 
 const renderCard = (item, i, length, total) => {
@@ -50,6 +52,13 @@ const renderCard = (item, i, length, total) => {
 
 // Get the data, update the store
 const dataString = document.querySelector('#data-source').innerHTML
-const allData = JSON.parse(dataString);
+document.data = JSON.parse(dataString);
 
-store.data = allData.slice(0, 10)
+document.store.data = document.data.slice(0, 10)
+
+fetch('/data.json')
+  .then(resp => resp.json())
+  .then(newData => { document.data = newData; document.store.data = document.data.slice(0, 10); })
+  .catch(error => {
+    console.log('💩 we\'ve messed up big time');
+  })
