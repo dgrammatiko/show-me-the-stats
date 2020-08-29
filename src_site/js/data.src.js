@@ -1,6 +1,7 @@
 import { render, html } from 'uhtml';
 import { store } from './store.js';
 import { loadmore } from './observer.js';
+import { navigation } from './filters.js';
 
 document.store = store;
 
@@ -61,4 +62,6 @@ fetch('/data.json')
   .then(newData => { document.data = newData; document.store.data = document.data.slice(0, 10); })
   .catch(error => {
     console.log('💩 we\'ve messed up big time');
-  })
+  });
+
+navigation();

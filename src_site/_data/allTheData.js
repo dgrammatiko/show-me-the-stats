@@ -5,8 +5,9 @@ module.exports = async () => {
     const dataNew = await JSON.parse(dataNewText);
 
     const finalData = [];
-    dataNew.forEach(item => {
+    dataNew.forEach((item, i) => {
         const newItem = item
+        item.id = i
         newItem.metrics = {
             performance: 0,
             firstContentfulPaint: 0,

@@ -6,8 +6,9 @@ module.exports = async () => {
 
   const finalData = [];
   dataNew.forEach((item, i) => {
-    if (i < 11) {
+    if (i < 20) {
       const newItem = item
+      item.id = i
       newItem.metrics = {
         performance: 0,
         firstContentfulPaint: 0,
