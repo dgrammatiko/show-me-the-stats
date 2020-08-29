@@ -1,36 +1,17 @@
 import { render, html } from 'uhtml' //'https://unpkg.com/uhtml?module';
-
-window.renderData = [];
-
-// const lazyload = (element) => {
-//   const io = new IntersectionObserver((entries, observer) => {
-//     entries.forEach((entry) => {
-//       if (entry.isIntersecting) {
-//         element.src = element.getAttribute("data-src");
-//         observer.disconnect();
-//       }
-//     });
-//   });
-
-//   io.observe(element);
-// };
-// ref=${ lazyload }
+import { store } from './store.js'
 
 const loadmore = (element) => {
   const io = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const triggerUpdate = parseInt(element.dataset.length, 10) === parseInt(element.dataset.i, 10) + 1;
-        if (parseInt(element.dataset.i, 10) + 1 < parseInt(element.dataset.length, 10)) {
-          observer.disconnect();
-        }
-
         if (triggerUpdate) {
-          window.renderData = window.allData.slice(0, parseInt(element.dataset.length, 10) + 10);
-          observer.disconnect();
-          renderApp();
+          if (parseInt(element.dataset.length, 10) < parseInt(element.dataset.total, 10)) {
+            store.data = allData.slice(0, parseInt(element.dataset.length, 10) + 10);
+          }
         }
-
+        observer.disconnect();
       }
     });
   });
@@ -40,14 +21,12 @@ const loadmore = (element) => {
 
 const renderApp = () => render(
   document.getElementById("content"),
-  html`<ul class="cards">
-  ${ renderData.map((item, i) => renderCard(item, i, renderData.length))}
-    </ul> `
+  html`<ul class="cards">${store.data.map((item, i) => renderCard(item, i, store.data.length, allData.length))}</ul>`
 );
 
-const renderCard = (item, i, length) => {
+const renderCard = (item, i, length, total) => {
   const src = `/images/small/${btoa((new URL(item.href)).origin)}.jpg`;
-  return html`<li class="card" ref=${loadmore} .dataset=${{ i: i, length: length }} >
+  return html`<li class="card" ref=${loadmore} .dataset=${{ i: i, length: length, total: total }} >
     <div class="card-header">
       <a href="${item.href}"><h3>${item.title}</h3></a>
     </div>
@@ -86,10 +65,9 @@ const renderCard = (item, i, length) => {
   </li > `;
 };
 
-const dataString = document.querySelector('#data-source').innerHTML
-window.allData = JSON.parse(dataString);
-window.renderData = window.allData.slice(0, 10)
+document.addEventListener('updated', renderApp);
 
-if (window.renderData) {
-  renderApp()
-}
+const dataString = document.querySelector('#data-source').innerHTML
+const allData = JSON.parse(dataString);
+
+store.data = allData.slice(0, 10)

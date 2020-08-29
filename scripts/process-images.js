@@ -1,5 +1,4 @@
 const { existsSync, mkdirSync } = require('fs');
-const path = require('path');
 const sharp = require('sharp');
 
 if (!existsSync('src_site/images')) {
