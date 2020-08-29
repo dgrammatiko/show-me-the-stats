@@ -6,7 +6,8 @@
     "rollup": "rollup --config rollup.config.js",
     "build": "npx eleventy build",
     "scrape": "node ./scripts/scrape.js",
-    "deploy": "npm run rollup && npm run build"
+    "deploy": "npm run rollup && npm run build",
+    "lighthouse": "node ./scripts/lighthouse.js"
   },
   "author": "Dimitris Grammatikogiannis",
   "license": "MIT",
