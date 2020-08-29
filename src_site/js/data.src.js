@@ -1,28 +1,11 @@
-import { render, html } from 'uhtml' //'https://unpkg.com/uhtml?module';
-import { store } from './store.js'
+import { render, html } from 'uhtml';
+import { store } from './store.js';
+import { loadmore } from './store.js';
 
-const loadmore = (element) => {
-  const io = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const triggerUpdate = parseInt(element.dataset.length, 10) === parseInt(element.dataset.i, 10) + 1;
-        if (triggerUpdate) {
-          if (parseInt(element.dataset.length, 10) < parseInt(element.dataset.total, 10)) {
-            store.data = allData.slice(0, parseInt(element.dataset.length, 10) + 10);
-          }
-        }
-        observer.disconnect();
-      }
-    });
-  });
-
-  io.observe(element);
-};
-
-const renderApp = () => render(
+document.addEventListener('updated', () => render(
   document.getElementById("content"),
   html`<ul class="cards">${store.data.map((item, i) => renderCard(item, i, store.data.length, allData.length))}</ul>`
-);
+));
 
 const renderCard = (item, i, length, total) => {
   const src = `/images/small/${btoa((new URL(item.href)).origin)}.jpg`;
@@ -65,8 +48,7 @@ const renderCard = (item, i, length, total) => {
   </li > `;
 };
 
-document.addEventListener('updated', renderApp);
-
+// Get the data, update the store
 const dataString = document.querySelector('#data-source').innerHTML
 const allData = JSON.parse(dataString);
 
