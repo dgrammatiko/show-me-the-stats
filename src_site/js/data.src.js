@@ -1,6 +1,6 @@
 import { render, html } from 'uhtml';
 import { store } from './store.js';
-import { loadmore } from './store.js';
+import { loadmore } from './observer.js';
 
 document.addEventListener('updated', () => render(
   document.getElementById("content"),
