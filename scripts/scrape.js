@@ -66,7 +66,7 @@ const download = (url, path, callback) => {
   elapsed_time("Fetching all the pages URLs completed");
 
   if (siteLinks.length) {
-    for await (site of siteLinks) {
+    for await (const [i, site] of siteLinks.entries()) {
       console.log(`Fetching: ${site}`)
       await page.goto(`${site}`, { waitUntil: "load" });
       await page.content();
@@ -102,6 +102,7 @@ const download = (url, path, callback) => {
       });
 
       const tmpData = {
+        id: i,
         href: href,
         title: title,
         text: text,

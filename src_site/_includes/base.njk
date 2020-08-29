@@ -5,15 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{title}}">
     <title>Comparinator</title>
-    <style>{{ 'css/bonsai-base.css' | inlineCss | safe }}</style>
-    <style>{{ 'css/toggler.css' | inlineCss | safe }}</style>
-    <script>this.customElements||document.write('<script src="//unpkg.com/document-register-element"><\x2fscript>');</script>
-    <script src="/js/toggler.esm.js" type=module defer></script>
-    <script src="/js/toggler.es5.js" nomodule defer></script>
+    <style>
+      {{'css/bonsai-base.css' | inlineCss | safe}}
+      {{'css/nav.css' | inlineCss | safe}}
+      {{'css/data.css' | inlineCss | safe}}
+      {{'css/toggler.css' | inlineCss | safe}}
+    </style>
+    <script src="/js/data.esm.js" type="module" defer="defer"></script>
+    <script src="/js/toggler.esm.js" type="module" defer="defer"></script>
   </head>
 
   <body>
-    {{ layoutContent | safe }}
+    {% include "header.njk" %}
+
+    <main id="content">
+      {{ layoutContent | safe }}
+    </main>
+
+    {% include "modal.njk" %}
+    <script id="data-source" type="application/json">
+      {{ allTheData | dump | safe }}
+    </script>
   </body>
 
 </html>
