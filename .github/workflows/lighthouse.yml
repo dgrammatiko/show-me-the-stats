@@ -1,4 +1,4 @@
-name: Lighthouse gather data 0-100 CI
+name: Lighthouse gather data 100-200 CI
 on: [push, pull_request]
 env:
   CI: true

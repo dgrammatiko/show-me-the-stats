@@ -22,7 +22,7 @@ let lighthouseData;
 
   for (const [index, site] of initialData.entries()) {
     const { href, host, pathname, protocol } = new url.parse(site.href)
-    if (index < 101) {
+    if (100 <= index < 201) {
       urlsForAudit.push(`${protocol}//${host}/`);
     }
   }
@@ -40,5 +40,5 @@ let lighthouseData;
   });
 
   // @todo remove these files
-  await writeFile('./src_data_all/sitesData-with-LH_0-100.json', JSON.stringify(lighthouseData), { encoding: 'utf8' });
+  await writeFile('./src_data_all/sitesData-with-LH_100-200.json', JSON.stringify(lighthouseData), { encoding: 'utf8' });
 })()
