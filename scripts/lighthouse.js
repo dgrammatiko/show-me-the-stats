@@ -13,7 +13,7 @@ if (!existsSync('./src_data_all')) {
   mkdirSync('./src_data_all')
 }
 
-let lighthoseData;
+let lighthouseData;
 
 (async () => {
   const initialDataText = await readFile('./src_site/sitesData.json', { encoding: 'utf8' });
