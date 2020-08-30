@@ -1,9 +1,9 @@
 import { render, html } from 'uhtml';
-import { store } from './store.js';
+import { Store } from './store.js';
 import { loadmore } from './observer.js';
 import { navigation } from './filters.js';
 
-document.store = store;
+document.store = new Store();
 
 document.addEventListener('updated', () => render(
   document.getElementById("content"),
@@ -47,19 +47,23 @@ const renderCard = (item, i, length, total) => {
       <p>${item.text}</p>
     </details>
   </div>
-    </div >
-  </li > `;
+    </div>
+  </li>`;
 };
+
 
 // Get the data, update the store
 const dataString = document.querySelector('#data-source').innerHTML
 document.data = JSON.parse(dataString);
 
-document.store.data = document.data.slice(0, 10)
+document.store.data = document.data.slice(0, 10);
 
 fetch('/data.json')
   .then(resp => resp.json())
-  .then(newData => { document.data = newData; document.store.data = document.data.slice(0, 10); })
+  .then(newData => {
+    document.data = newData;
+    document.store.data = document.data.slice(0, 10);
+  })
   .catch(error => {
     console.log('💩 we\'ve messed up big time');
   });

@@ -5,7 +5,7 @@ export const sortData = ({ sortBy, direction }) => {
     if (['performance', 'accessibility', 'seo', 'bestPrectices', 'carbon'].includes(sortBy)) {
       bA = parseInt(b.metrics[sortBy], 10);
       aA = parseInt(a.metrics[sortBy], 10);
-    } else if (['title', 'date'].includes(sortBy)) {
+    } else if (['title', 'date', 'id'].includes(sortBy)) {
       bA = b[sortBy];
       aA = a[sortBy];
     } else {
@@ -16,7 +16,7 @@ export const sortData = ({ sortBy, direction }) => {
     if (direction === 'desc') {
       if (sortBy === 'title') {
         return bA.localeCompare(aA, 'en', { sensitivity: 'base' });
-      } else if (sortBy = 'date') {
+      } else if (sortBy === 'date') {
         return Math.round((new Date(bA)).getTime() / 1000) - Math.round((new Date(aA)).getTime() / 1000);
       } else {
         return bA - aA;
@@ -24,7 +24,7 @@ export const sortData = ({ sortBy, direction }) => {
     } else {
       if (sortBy === 'title') {
         return aA.localeCompare(bA, 'en', { sensitivity: 'base' });
-      } else if (sortBy = 'date') {
+      } else if (sortBy === 'date') {
         return Math.round((new Date(aA)).getTime() / 1000) - Math.round((new Date(bA)).getTime() / 1000);
       } else {
         return aA - bA;

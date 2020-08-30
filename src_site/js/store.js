@@ -1,12 +1,13 @@
-export const store = new Proxy({
-    data: []
-}, {
-    get(target, property) {
-        return target[property]
+export const Store = function () {
+  let data = [];
+
+  Object.defineProperty(this, 'data', {
+    get: function () {
+      return data;
     },
-    set(target, property, value) {
-        target[property] = value;
-        document.dispatchEvent((new CustomEvent('updated', {})))
-        return true
+    set: function (value) {
+      data = value;
+      window.document.dispatchEvent((new CustomEvent('updated', {})))
     }
-});
+  });
+}

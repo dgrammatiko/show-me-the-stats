@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Lighthouse gather data 0-100 CI
 on: [push, pull_request]
 env:
   CI: true
