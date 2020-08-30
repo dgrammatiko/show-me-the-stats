@@ -6,8 +6,11 @@ const KEYCODE = {
 };
 
 function modalEncapsulation(modal) {
+  modal.style.animationName = 'fadeInUp';
+  document.body.style.overflow = 'hidden';
   modal.style.display = 'flex';
   modal.style.visibility = 'visible';
+  modal.style.opacity = 1;
   modal.focusableElements = [].slice.call(modal.querySelectorAll(['a[href]', 'area[href]', 'input:not([disabled])', 'select:not([disabled])', 'textarea:not([disabled])', 'button:not([disabled])', 'iframe', 'object', 'embed', '[contenteditable]', '[tabindex]:not([tabindex^="-"])'].join()));
 
   console.log(modal.focusableElements)
@@ -20,8 +23,10 @@ function modalEncapsulation(modal) {
     // ESC key
     if (e.keyCode === KEYCODE.ESC) {
       console.log(modal)
-      modal.style.display = 'none';
+      document.body.style.overflow = 'unset';
+      modal.style.animationName = 'fadeOutDown';
       modal.style.visibility = 'hidden';
+      modal.style.opacity = 0;
       modal.removeEventListener(modal, keycontrol);
     }
 
@@ -55,8 +60,10 @@ function modalEncapsulation(modal) {
 function closeModal(event) {
   let element = event.target.closest('.light-modal')
   if (element) {
-    element.style.display = 'none';
+    document.body.style.overflow = 'unset';
+    element.style.animationName = 'fadeOutDown';
     element.style.visibility = 'hidden';
+    element.style.opacity = 0;
     element.removeEventListener(element, element.keycontrol);
   }
 }
@@ -66,8 +73,8 @@ export const renderModal = (where, data) => {
   render(
     where,
     html`
-<div class="light-modal" ref=${modalEncapsulation} role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
-  <div class="light-modal-content animated fadeInUp">
+<div class="light-modal animated" ref=${modalEncapsulation} role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
+  <div class="light-modal-content">
     <div class="light-modal-header">
       <h3 class="light-modal-heading">${data.title}</h3>
       <button class="light-modal-close-icon" aria-label="close" onclick=${closeModal}>&times;</button>

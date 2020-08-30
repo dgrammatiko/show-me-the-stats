@@ -25,7 +25,7 @@ function showModal(event) {
 
 const renderCard = (item, i, length, total) => {
   const src = `/images/small/${btoa((new URL(item.href)).origin)}.jpg`;
-  return html`<li class="card" ref=${loadmore} onclick=${showModal} .dataset=${{ i: i, length: length, total: total }} >
+  return html`<li tabindex="0" class="card" ref=${loadmore} onclick=${showModal} .dataset=${{ i: i, length: length, total: total }} >
     <div class="card-header">
       <h3>${item.title}</h3>
     </div>

@@ -23,6 +23,7 @@ blockquote {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  pointer-events: all;
 }
 
 .card-header {

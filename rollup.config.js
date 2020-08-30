@@ -4,7 +4,11 @@ import minifyHTML from "rollup-plugin-minify-html-literals";
 
 export default [{
   input: "src_site/js/app.src.js",
-  plugins: [resolve(), minifyHTML(), terser()],
+  plugins: [
+    resolve(),
+    minifyHTML(),
+    // terser(),
+  ],
   context: "null",
   moduleContext: "null",
   output: {

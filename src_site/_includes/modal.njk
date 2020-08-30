@@ -17,7 +17,7 @@
     justify-content: center;
     right: 0;
     z-index: 9000;
-    transition: background 1s;
+    transition: all 1s;
     font-size: var(--lm-font-size);
     visibility: hidden;
   }
@@ -44,7 +44,7 @@
   }
 
   .light-modal-header {
-    padding: 20px;
+    padding: 10px;
     background: rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
@@ -63,15 +63,6 @@
   .light-modal-body {
     padding: 20px;
     overflow: auto;
-    max-height: 450px;
-  }
-
-  .light-modal-footer {
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.2);
-    text-align: right;
-    display: flex;
-    align-items: center;
   }
 
   .light-modal-close-btn,
@@ -115,13 +106,20 @@
     }
   }
 
-  .animated {
-    animation-duration: 0.4s;
-    animation-fill-mode: both;
+  @keyframes fadeOutDown {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
   }
 
-  .fadeInUp {
-    animation-name: fadeInUp;
+  .animated {
+    animation-duration: 0.6s;
+    /*animation-fill-mode: both;*/
   }
 
   @media print, (prefers-reduced-motion: reduce) {
