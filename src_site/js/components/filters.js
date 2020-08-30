@@ -1,5 +1,5 @@
 import { html, render } from 'uhtml';
-import { sortData } from './sort-algo.js';
+import { sortData } from '../utils/sort-algo.js';
 
 const sortIt = (event) => {
   const element = event.target;

@@ -1,8 +1,8 @@
 import { render, html } from 'uhtml';
-import { Store } from './store.js';
-import { loadmore } from './observer.js';
-import { navigation } from './filters.js';
-import { renderModal } from './modal.js'
+import { Store } from './utils/store.js';
+import { loadmore } from './utils/observer.js';
+import { navigation } from './components/filters.js';
+import { renderModal } from './components/modal.js'
 
 document.dataLength = 10;
 document.store = new Store();
@@ -14,7 +14,7 @@ document.addEventListener('updated', () => render(
 
 function showModal(event) {
   let element = event.target;
-  if (element.nodeName !== 'LI') {
+  if (!element.classList.contains('card')) {
     element = element.closest('.card')
   }
 
@@ -23,14 +23,6 @@ function showModal(event) {
   renderModal(document.getElementById('modal'), data);
 }
 
-/**
- *
-    <details>
-      <summary>Description</summary>
-      <p>${item.text}</p>
-    </details>
-  </div>
- */
 const renderCard = (item, i, length, total) => {
   const src = `/images/small/${btoa((new URL(item.href)).origin)}.jpg`;
   return html`<li class="card" ref=${loadmore} onclick=${showModal} .dataset=${{ i: i, length: length, total: total }} >
