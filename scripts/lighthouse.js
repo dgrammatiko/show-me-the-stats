@@ -22,7 +22,7 @@ let lighthouseData;
 
   for (const [index, site] of initialData.entries()) {
     const { href, host, pathname, protocol } = new url.parse(site.href)
-    if (100 <= index < 201) {
+    if (100 <= index && index < 201) {
       urlsForAudit.push(`${protocol}//${host}/`);
     }
   }
