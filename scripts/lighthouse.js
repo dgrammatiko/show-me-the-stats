@@ -22,7 +22,7 @@ let lighthoseData;
 
   for (const [index, site] of initialData.entries()) {
     const { href, host, pathname, protocol } = new url.parse(site.href)
-    if (index < 1) {
+    if (index < 101) {
       urlsForAudit.push(`${protocol}//${host}/`);
     }
   }
@@ -36,7 +36,7 @@ let lighthoseData;
     // Add carbon Footprint
     lh.lighthouse.carbon = parseFloat((lh.weight.total / 1024 / 1024 / 1024) * 0.06 * 1000).toPrecision(3);
 
-    await writeFile(`./src_data/${host.replace(/^www\./, '').replace(/\./g, '_')}.json`, JSON.stringify(lh), { encoding: 'utf8' });
+    await writeFile(`./src_data/${host.replace(/^www\./, '')}.json`, JSON.stringify(lh), { encoding: 'utf8' });
   });
 
   // @todo remove these files
