@@ -17,7 +17,7 @@ if (!existsSync('./src_data')) {
 
   for (const [index, site] of initialData.entries()) {
     const { href, host, pathname, protocol } = new url.parse(site.href)
-    if (index < 101) {
+    if (100 >= index < 201) {
       urlsForAudit.push(`${protocol}//${host}/`);
       console.error(host.replace(/^www\./, '').replace(/\./g, '_'))
     }
@@ -46,5 +46,5 @@ if (!existsSync('./src_data')) {
   //   })
   // });
 
-  await writeFile('./src_data/sitesData-with-LH_0-100.json', lighthouseData, { encoding: 'utf - 8' });
+  await writeFile('./src_data/sitesData-with-LH_100-200.json', lighthouseData, { encoding: 'utf - 8' });
 })()
