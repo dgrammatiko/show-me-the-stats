@@ -23,7 +23,7 @@ if (!existsSync('./src_data')) {
     }
   }
 
-  const lighthoseData = await PerfLeaderboard(urlsForAudit, 3, { launchOptions: {} });
+  const lighthouseData = await PerfLeaderboard(urlsForAudit, 3, { launchOptions: {} });
 
   // lighthoseData.forEach(lh => {
   //   initialData.forEach((data, idx) => {
