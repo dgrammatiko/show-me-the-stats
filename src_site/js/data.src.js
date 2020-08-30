@@ -2,7 +2,9 @@ import { render, html } from 'uhtml';
 import { Store } from './store.js';
 import { loadmore } from './observer.js';
 import { navigation } from './filters.js';
+import { renderModal } from './modal.js'
 
+document.dataLength = 10;
 document.store = new Store();
 
 document.addEventListener('updated', () => render(
@@ -10,11 +12,30 @@ document.addEventListener('updated', () => render(
   html`<ul class="cards">${document.store.data.map((item, i) => renderCard(item, i, document.store.data.length, document.data.length))}</ul>`
 ));
 
+function showModal(event) {
+  let element = event.target;
+  if (element.nodeName !== 'LI') {
+    element = element.closest('.card')
+  }
+
+  const data = document.store.data[element.dataset.i];
+
+  renderModal(document.getElementById('modal'), data);
+}
+
+/**
+ *
+    <details>
+      <summary>Description</summary>
+      <p>${item.text}</p>
+    </details>
+  </div>
+ */
 const renderCard = (item, i, length, total) => {
   const src = `/images/small/${btoa((new URL(item.href)).origin)}.jpg`;
-  return html`<li class="card" ref=${loadmore} .dataset=${{ i: i, length: length, total: total }} >
+  return html`<li class="card" ref=${loadmore} onclick=${showModal} .dataset=${{ i: i, length: length, total: total }} >
     <div class="card-header">
-      <a href="${item.href}"><h3>${item.title}</h3></a>
+      <h3>${item.title}</h3>
     </div>
     <div class="card-body">
       <picture class="card-image">
@@ -42,11 +63,6 @@ const renderCard = (item, i, length, total) => {
         carbon footprint: <span>${item.metrics.carbon.toFixed(3)}</span>
       </li>
     </ul>
-    <details>
-      <summary>Description</summary>
-      <p>${item.text}</p>
-    </details>
-  </div>
     </div>
   </li>`;
 };
@@ -56,13 +72,13 @@ const renderCard = (item, i, length, total) => {
 const dataString = document.querySelector('#data-source').innerHTML
 document.data = JSON.parse(dataString);
 
-document.store.data = document.data.slice(0, 10);
+document.store.data = document.data.slice(0, document.dataLength);
 
 fetch('/data.json')
   .then(resp => resp.json())
   .then(newData => {
     document.data = newData;
-    document.store.data = document.data.slice(0, 10);
+    document.store.data = document.data.slice(0, document.dataLength);
   })
   .catch(error => {
     console.log('💩 we\'ve messed up big time');

@@ -32,5 +32,5 @@ export const sortData = ({ sortBy, direction }) => {
     }
   });
 
-  document.store.data = x;
+  document.store.data = x.slice(0, document.dataLength);
 };
