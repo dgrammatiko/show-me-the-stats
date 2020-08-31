@@ -1,10 +1,15 @@
 import { render, html } from "uhtml"
-
+import { imagePlaceholder } from '../utils/image-placeholder.js'
 const KEYCODE = {
   TAB: 9,
   ESC: 27,
 };
 
+const host = location.origin;
+
+function imageLoad(img) {
+  img.src = `${host}${img.dataset.src}`;
+}
 function closeModal(event) {
   let element = event.target.closest('.light-modal')
   if (element) {
@@ -52,6 +57,8 @@ function modalEncapsulation(modal) {
     element.style.animationName = 'fadeOutDown';
     element.style.visibility = 'hidden';
     element.style.opacity = 0;
+    const img = element.querySelector('[loading="lazy"]');
+    img.src = placeholder;
     element.removeEventListener(document, element.keycontrol);
   }
 
@@ -69,7 +76,7 @@ export const renderModal = (where, data) => {
   render(
     where,
     html`
-<div class="light-modal animated" ref=${modalEncapsulation} role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
+<div class="light-modal" ref=${modalEncapsulation} role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
   <div class="light-modal-content">
     <div class="light-modal-header">
       <h3 class="light-modal-heading">${data.title}</h3>
@@ -78,7 +85,7 @@ export const renderModal = (where, data) => {
 
     <div class="light-modal-body">
       <picture class="card-image">
-        <img loading="lazy" src=${image} />
+        <img loading="lazy" src=${imagePlaceholder} data-src=${image} alt=${data.imageAlt} ref=${imageLoad} />
       </picture>
       <a href="#">test</a>
       <ul>

@@ -7,7 +7,7 @@ export default [{
   plugins: [
     resolve(),
     minifyHTML(),
-    // terser(),
+    terser(),
   ],
   context: "null",
   moduleContext: "null",
