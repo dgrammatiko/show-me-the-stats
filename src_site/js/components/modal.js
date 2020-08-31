@@ -58,7 +58,7 @@ function modalEncapsulation(modal) {
     element.style.visibility = 'hidden';
     element.style.opacity = 0;
     const img = element.querySelector('[loading="lazy"]');
-    img.src = placeholder;
+    img.src = imagePlaceholder;
     element.removeEventListener(document, element.keycontrol);
   }
 
