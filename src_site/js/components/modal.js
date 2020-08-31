@@ -9,9 +9,10 @@ const host = location.origin;
 
 function imageLoad(img) {
   img.src = `${host}${img.dataset.src}`;
+  img.style.opacity = 1;
 }
 function closeModal(event) {
-  let element = event.target.closest('.light-modal')
+  let element = event.target.closest('.modal')
   if (element) {
     element.close(element)
   }
@@ -76,14 +77,14 @@ export const renderModal = (where, data) => {
   render(
     where,
     html`
-<div class="light-modal" ref=${modalEncapsulation} role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
-  <div class="light-modal-content">
-    <div class="light-modal-header">
-      <h3 class="light-modal-heading">${data.title}</h3>
-      <button class="light-modal-close-icon" aria-label="close" onclick=${closeModal}>&times;</button>
+<div class="modal" ref=${modalEncapsulation} role="dialog" aria-labelledby="modal-label" aria-hidden="false">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-heading">${data.title}</h3>
+      <button class="modal-close-icon" aria-label="close" onclick=${closeModal}>&times;</button>
     </div>
 
-    <div class="light-modal-body">
+    <div class="modal-body">
       <picture class="card-image">
         <img loading="lazy" src=${imagePlaceholder} data-src=${image} alt=${data.imageAlt} ref=${imageLoad} />
       </picture>

@@ -15,8 +15,10 @@ document.addEventListener('updated', () => render(
 
 function showModal(event) {
   let element = event.target;
-  if (!element.classList.contains('card')) {
-    element = element.closest('.card')
+  event.preventDefault();
+
+  if (!element.classList.contains('showModal')) {
+    element = element.closest('.showModal')
   }
 
   const data = document.store.data[element.dataset.i];
@@ -26,7 +28,8 @@ function showModal(event) {
 
 const renderCard = (item, i, length, total) => {
   const src = `/images/small/${btoa((new URL(item.href)).origin)}.jpg`;
-  return html`<li tabindex="0" class="card" onclick=${showModal} data-i=${i} >
+  return html`<li class="card">
+  <a tabindex="0" href="#" class="showModal" onclick=${showModal} data-i=${i} >
     <div class="card-header">
       <h3>${item.title}</h3>
     </div>
@@ -57,6 +60,7 @@ const renderCard = (item, i, length, total) => {
       </li>
     </ul>
     </div>
+    </a>
   </li>`;
 };
 

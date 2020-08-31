@@ -84,7 +84,8 @@ blockquote {
   box-shadow: var(--accent-shadow);
 }
 
-.card picture {
+.card picture,
+.modal-body picture {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -94,9 +95,11 @@ blockquote {
   border: 1px solid rgba(0,0,0,.1);
 }
 
-.card img {
+.card img,
+.modal-body img {
   object-fit: cover;
   opacity:.25;
+  width: 100%;
   height: 100%;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
