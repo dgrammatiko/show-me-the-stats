@@ -5,29 +5,24 @@ const KEYCODE = {
   ESC: 27,
 };
 
+function closeModal(event) {
+  let element = event.target.closest('.light-modal')
+  if (element) {
+    element.close(element)
+  }
+}
+
 function modalEncapsulation(modal) {
-  modal.style.animationName = 'fadeInUp';
-  document.body.style.overflow = 'hidden';
-  modal.style.display = 'flex';
-  modal.style.visibility = 'visible';
-  modal.style.opacity = 1;
   modal.focusableElements = [].slice.call(modal.querySelectorAll(['a[href]', 'area[href]', 'input:not([disabled])', 'select:not([disabled])', 'textarea:not([disabled])', 'button:not([disabled])', 'iframe', 'object', 'embed', '[contenteditable]', '[tabindex]:not([tabindex^="-"])'].join()));
 
-  console.log(modal.focusableElements)
   if (modal.focusableElements.length) {
     modal.focusableElements[0].focus();
   }
 
   function keycontrol(e) {
-    debugger;
     // ESC key
     if (e.keyCode === KEYCODE.ESC) {
-      console.log(modal)
-      document.body.style.overflow = 'unset';
-      modal.style.animationName = 'fadeOutDown';
-      modal.style.visibility = 'hidden';
-      modal.style.opacity = 0;
-      modal.removeEventListener(modal, keycontrol);
+      modal.close(modal);
     }
 
     // TAB key
@@ -52,20 +47,21 @@ function modalEncapsulation(modal) {
     }
   };
 
-  modal.keycontrol = keycontrol;
-  modal.addEventListener('keydown', modal.keycontrol);
-  console.log(modal)
-}
-
-function closeModal(event) {
-  let element = event.target.closest('.light-modal')
-  if (element) {
+  modal.close = (element) => {
     document.body.style.overflow = 'unset';
     element.style.animationName = 'fadeOutDown';
     element.style.visibility = 'hidden';
     element.style.opacity = 0;
-    element.removeEventListener(element, element.keycontrol);
+    element.removeEventListener(document, element.keycontrol);
   }
+
+  // Open
+  modal.style.animationName = 'fadeInUp';
+  document.body.style.overflow = 'hidden';
+  modal.style.visibility = 'visible';
+  modal.style.opacity = 1;
+  modal.keycontrol = keycontrol;
+  document.addEventListener('keydown', modal.keycontrol);
 }
 
 export const renderModal = (where, data) => {
