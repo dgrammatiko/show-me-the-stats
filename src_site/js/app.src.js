@@ -3,7 +3,7 @@ import { Store } from './utils/store.js';
 import { loadmore } from './utils/observer.js';
 import { navigation } from './components/filters.js';
 import { renderModal } from './components/modal.js'
-import { imagePlaceholder } from '../utils/image-placeholder.js'
+import { imagePlaceholder } from './utils/image-placeholder.js'
 
 document.dataLength = 10;
 document.store = new Store();
