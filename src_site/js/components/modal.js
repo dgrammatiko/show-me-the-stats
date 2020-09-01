@@ -19,7 +19,7 @@ function closeModal(event) {
 }
 
 function modalEncapsulation(modal) {
-  modal.focusableElements = [].slice.call(modal.querySelectorAll(['a[href]', 'area[href]', 'input:not([disabled])', 'select:not([disabled])', 'textarea:not([disabled])', 'button:not([disabled])', 'iframe', 'object', 'embed', '[contenteditable]', '[tabindex]:not([tabindex^="-"])'].join()));
+  modal.focusableElements = [].slice.call(modal.querySelectorAll(['a[href]', 'area[href]', 'button:not([disabled])', '[tabindex]:not([tabindex^="-"])'].join()));
 
   if (modal.focusableElements.length) {
     modal.focusableElements[0].focus();
@@ -61,7 +61,7 @@ function modalEncapsulation(modal) {
     const img = element.querySelector('[loading="lazy"]');
     const link = document.querySelector(`[data-i="${element.dataset.i}"]`);
     img.src = imagePlaceholder;
-    element.removeEventListener(document, element.keycontrol);
+    document.removeEventListener(document, element.keycontrol);
 
     if (link)
       link.focus();
