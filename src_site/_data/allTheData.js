@@ -70,13 +70,13 @@ module.exports = async () => {
                 newItem.timeToFirstByte = lighthouse.timeToFirstByte
                 newItem.weight = lighthouse.weight
                 newItem.axe = lighthouse.axe
-                console.log(newItem)
+
                 finalData.push(newItem)
             } else {
                 finalData.push({ ...newItem, ...nullData })
             }
         } else {
-            console.log('Not exists')
+
             finalData.push({ ...newItem, ...nullData })
 
         }

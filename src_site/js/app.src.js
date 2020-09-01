@@ -67,14 +67,17 @@ document.data = JSON.parse(dataString);
 
 document.store.data = document.data.slice(0, document.dataLength);
 
-fetch('/data.json')
-  .then(resp => resp.json())
-  .then(newData => {
-    document.data = newData;
-    document.store.data = document.data.slice(0, document.dataLength);
-  })
-  .catch(error => {
-    console.log('💩 we\'ve messed up big time');
-  });
+function fetchData() {
+  fetch('/data.json')
+    .then(resp => resp.json())
+    .then(newData => {
+      document.data = newData;
+      document.store.data = document.data.slice(0, document.dataLength);
+    })
+    .catch(error => {
+      console.log('💩 we\'ve messed up big time');
+    });
+}
+requestIdleCallback(fetchData)
 
 navigation();
