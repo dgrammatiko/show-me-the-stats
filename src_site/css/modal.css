@@ -16,8 +16,8 @@
   }
 
   .modal-content {
-    background: var(--background);
-    color: #000;
+    background: #222;
+    color: #fff;
     width: 100vw;
     height: 100vh;
     border-radius: 0.2em;
@@ -34,7 +34,7 @@
 
   .modal-header {
     padding: 10px;
-    background: rgba(0, 0, 0, 0.2);
+    background: #111111;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,8 +59,8 @@
     text-decoration: none;
     color: #fff;
     padding: 5px 10px;
-    border-radius: 0.2em;
-    background: blue;
+    border-radius: 10rem;
+    background: red;
     font-size: 1.5em;
     line-height: 1;
     opacity: 1;

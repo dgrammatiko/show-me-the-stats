@@ -10,58 +10,54 @@ document.store = new Store();
 
 document.addEventListener('updated', () => render(
   document.getElementById("content"),
-  html`<ul class="cards">${document.store.data.map((item, i) => renderCard(item, i, document.store.data.length, document.data.length))}</ul>`
+  html`<section class="cards">${document.store.data.map((item, i) => renderCard(item, i, document.store.data.length, document.data.length))}</section>`
 ));
 
 function showModal(event) {
   let element = event.target;
-  event.preventDefault();
-
-  if (!element.classList.contains('showModal')) {
-    element = element.closest('.showModal')
-  }
 
   const data = document.store.data[element.dataset.i];
 
-  renderModal(document.getElementById('modal'), data);
+  renderModal(document.getElementById('modal'), data, element.dataset.i);
 }
 
 const renderCard = (item, i, length, total) => {
   const src = `/images/small/${btoa((new URL(item.href)).origin)}.jpg`;
-  return html`<li class="card">
-  <a tabindex="0" href="#" class="showModal" onclick=${showModal} data-i=${i} >
-    <div class="card-header">
-      <h3>${item.title}</h3>
+  return html`
+<article class="box card">
+  <div class="card-header">
+    <h1>${item.title}</h1>
+  </div>
+  <div class="card-body">
+    <picture class="card-image">
+      <img ref=${loadmore} .dataset=${{ i: i, src: src, length: length, total: total }} loading="lazy" src=${imagePlaceholder} alt=${item.imageAlt} />
+    </picture >
+    <div class="card-details">
+      <ul>
+        <li>
+          Performace: <span>${Math.round(item.metrics.performance)}%</span>
+        </li>
+        <li>
+          First contentful paint:
+              <span>${item.metrics.firstContentfulPaint.toFixed(2)}Sec </span>
+        </li>
+        <li>
+          Best practices:
+              <span>${Math.round(item.metrics.bestPractices)}%</span>
+        </li>
+        <li>
+          Accessibility:
+              <span>${Math.round(item.metrics.accessibility)}%</span>
+        </li>
+        <li>SEO: <span>${Math.round(item.metrics.seo)}%</span></li>
+        <li>
+          carbon footprint: <span>${item.metrics.carbon.toFixed(3)}</span>
+        </li>
+      </ul>
     </div>
-    <div class="card-body">
-      <picture class="card-image">
-        <img ref=${loadmore} .dataset=${{ i: i, src: src, length: length, total: total }} loading="lazy" src=${imagePlaceholder} alt=${item.imageAlt} />
-      </picture >
-  <div class="card-details">
-    <ul>
-      <li>
-        Performace: <span>${Math.round(item.metrics.performance)}%</span>
-      </li>
-      <li>
-        First contentful paint:
-            <span>${item.metrics.firstContentfulPaint.toFixed(2)}Sec </span>
-      </li>
-      <li>
-        Best practices:
-            <span>${Math.round(item.metrics.bestPractices)}%</span>
-      </li>
-      <li>
-        Accessibility:
-            <span>${Math.round(item.metrics.accessibility)}%</span>
-      </li>
-      <li>SEO: <span>${Math.round(item.metrics.seo)}%</span></li>
-      <li>
-        carbon footprint: <span>${item.metrics.carbon.toFixed(3)}</span>
-      </li>
-    </ul>
-    </div>
-    </a>
-  </li>`;
+    <button class="showModal" type="button" onclick=${showModal} data-i=${i} >The results</button>
+  </div>
+</article>`;
 };
 
 

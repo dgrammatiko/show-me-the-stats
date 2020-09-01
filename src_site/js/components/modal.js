@@ -59,8 +59,12 @@ function modalEncapsulation(modal) {
     element.style.visibility = 'hidden';
     element.style.opacity = 0;
     const img = element.querySelector('[loading="lazy"]');
+    const link = document.querySelector(`[data-i="${element.dataset.i}"]`);
     img.src = imagePlaceholder;
     element.removeEventListener(document, element.keycontrol);
+
+    if (link)
+      link.focus();
   }
 
   // Open
@@ -72,12 +76,12 @@ function modalEncapsulation(modal) {
   document.addEventListener('keydown', modal.keycontrol);
 }
 
-export const renderModal = (where, data) => {
+export const renderModal = (where, data, index) => {
   const image = `/images/large/${data.imageSrc}.jpg`
   render(
     where,
     html`
-<div class="modal" ref=${modalEncapsulation} role="dialog" aria-labelledby="modal-label" aria-hidden="false">
+<div class="modal" ref=${modalEncapsulation} role="dialog" aria-labelledby="modal-label" aria-hidden="false" data-i=${index} >
   <div class="modal-content">
     <div class="modal-header">
       <h3 class="modal-heading">${data.title}</h3>
