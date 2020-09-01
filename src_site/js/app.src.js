@@ -22,7 +22,6 @@ function showModal(event) {
 }
 
 const renderCard = (item, i, length, total) => {
-  console.log(item)
   const src = `/images/small/${btoa((new URL(item.href)).origin)}.jpg`;
   return html`
 <article class="box card">

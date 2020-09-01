@@ -33,7 +33,7 @@ function modalEncapsulation(modal) {
       // this.handleTabEvent(e);
       // Get the index of the current active element within the modal
       const focusedIndex = modal.focusableElements.indexOf(document.activeElement);
-      console.log(focusedIndex)
+
       // Handle TAB event if need to skip
       // If first element is focused and shift key is in use
       if (e.shiftKey && (focusedIndex === 0 || focusedIndex === -1)) {

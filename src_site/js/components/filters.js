@@ -3,10 +3,6 @@ import { sortData } from '../utils/sort-algo.js';
 
 const sortIt = (event) => {
   const element = event.target;
-  console.log({
-    sortBy: element.value,
-    direction: direction.value,
-  })
   sortData({
     sortBy: element.value,
     direction: direction.value,
@@ -15,10 +11,6 @@ const sortIt = (event) => {
 
 const changeDirection = (event) => {
   const element = event.target;
-  console.log({
-    sortBy: order.value,
-    direction: element.value,
-  })
   sortData({
     sortBy: order.value,
     direction: element.value,
