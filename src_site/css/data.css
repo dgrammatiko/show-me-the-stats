@@ -172,3 +172,7 @@ blockquote {
   height: 100%;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
+
+label {
+  color: #fff;
+}
