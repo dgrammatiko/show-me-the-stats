@@ -59,7 +59,7 @@ function modalEncapsulation(modal) {
     const img = element.querySelector('[loading="lazy"]');
     const link = document.querySelector(`button[data-i="${element.dataset.i}"]`);
     img.src = imagePlaceholder;
-    document.removeEventListener('keydown', element.keycontrol, true);
+    document.removeEventListener('keydown', element.keycontrol);
 
     if (link)
       link.focus();
