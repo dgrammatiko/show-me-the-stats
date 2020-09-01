@@ -19,11 +19,8 @@ function closeModal(event) {
 }
 
 function modalEncapsulation(modal) {
-  modal.focusableElements = [].slice.call(modal.querySelectorAll(['a[href]', 'area[href]', 'button:not([disabled])', '[tabindex]:not([tabindex^="-"])'].join()));
-
-  if (modal.focusableElements.length) {
-    modal.focusableElements[0].focus();
-  }
+  modal.modalIsOpen = true;
+  modal.focusableElements = [].slice.call(modal.querySelectorAll(['button:not([disabled])', 'a[href]', 'area[href]', '[tabindex]:not([tabindex^="-"])'].join()));
 
   function keycontrol(e) {
     // ESC key
@@ -54,12 +51,13 @@ function modalEncapsulation(modal) {
   };
 
   modal.close = (element) => {
+    element.modalIsOpen = false;
     document.body.style.overflow = 'unset';
     element.style.animationName = 'fadeOutDown';
     element.style.visibility = 'hidden';
     element.style.opacity = 0;
     const img = element.querySelector('[loading="lazy"]');
-    const link = document.querySelector(`[data-i="${element.dataset.i}"]`);
+    const link = document.querySelector(`button[data-i="${element.dataset.i}"]`);
     img.src = imagePlaceholder;
     document.removeEventListener(document, element.keycontrol);
 
@@ -74,6 +72,15 @@ function modalEncapsulation(modal) {
   modal.style.opacity = 1;
   modal.keycontrol = keycontrol;
   document.addEventListener('keydown', modal.keycontrol);
+
+
+  modal.addEventListener('animationend', () => {
+    if (modal.modalIsOpen && modal.focusableElements.length) {
+      modal.focusableElements[0].focus();
+    }
+  });
+
+
 }
 
 export const renderModal = (where, data, index) => {
@@ -85,7 +92,7 @@ export const renderModal = (where, data, index) => {
   <div class="modal-content">
     <div class="modal-header">
       <h3 class="modal-heading">${data.title}</h3>
-      <button class="modal-close-icon" aria-label="close" onclick=${closeModal}>&times;</button>
+      <button tabindex="0" class="modal-close-icon" aria-label="close" onclick=${closeModal}>&times;</button>
     </div>
 
     <div class="modal-body">
