@@ -101,12 +101,12 @@ export const renderModal = (where, data, index) => {
       </picture>
       <a href="#">test</a>
       <ul>
-        <li>Performace: <span>${data.metrics.performance}%</span></li>
-        <li>First contentful paint:<span>${data.metrics.firstContentfulPaint.toFixed(2)}Sec </span></li>
-        <li>Best practices: <span>${Math.round(data.metrics.bestPractices)}%</span></li>
-        <li>Accessibility:<span>${Math.round(data.metrics.accessibility)}%</span></li>
-        <li>SEO: <span>${Math.round(data.metrics.seo)}%</span></li>
-        <li>carbon footprint: <span>${data.metrics.carbon.toFixed(3)}</span></li>
+        <li>Performace: <span>${data.lighthouse.performance}%</span></li>
+        <li>First contentful paint:<span>${data.firstContentfulPaint.toFixed(2)}Sec </span></li>
+        <li>Best practices: <span>${Math.round(data.lighthouse.bestPractices)}%</span></li>
+        <li>Accessibility:<span>${Math.round(data.lighthouse.accessibility)}%</span></li>
+        <li>SEO: <span>${Math.round(data.lighthouse.seo)}%</span></li>
+        <li>carbon footprint: <span>${data.lighthouse.carbon}</span></li>
       </ul>
       <p>${data.text}</p>
     </div>

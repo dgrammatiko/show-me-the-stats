@@ -22,6 +22,7 @@ function showModal(event) {
 }
 
 const renderCard = (item, i, length, total) => {
+  console.log(item)
   const src = `/images/small/${btoa((new URL(item.href)).origin)}.jpg`;
   return html`
 <article class="box card">
@@ -35,23 +36,23 @@ const renderCard = (item, i, length, total) => {
     <div class="card-details">
       <ul>
         <li>
-          Performace: <span>${Math.round(item.metrics.performance)}%</span>
+          Performace: <span>${Math.round(item.lighthouse.performance * 100)}%</span>
         </li>
         <li>
-          First contentful paint:
-              <span>${item.metrics.firstContentfulPaint.toFixed(2)}Sec </span>
+          FCP:
+              <span>${(item.firstContentfulPaint / 1000).toFixed(3)}Sec </span>
         </li>
         <li>
           Best practices:
-              <span>${Math.round(item.metrics.bestPractices)}%</span>
+              <span>${Math.round(item.lighthouse.bestPractices * 100)}%</span>
         </li>
         <li>
           Accessibility:
-              <span>${Math.round(item.metrics.accessibility)}%</span>
+              <span>${Math.round(item.lighthouse.accessibility * 100)}%</span>
         </li>
-        <li>SEO: <span>${Math.round(item.metrics.seo)}%</span></li>
+        <li>SEO: <span>${Math.round(item.lighthouse.seo * 100)}%</span></li>
         <li>
-          carbon footprint: <span>${item.metrics.carbon.toFixed(3)}</span>
+          carbon footprint: <span>${item.lighthouse.carbon}</span>
         </li>
       </ul>
     </div>
