@@ -20,7 +20,7 @@ export const renderCard = (item, i, length, total) => {
   </div>
   <div class="card-body">
     <picture class="card-image">
-      <img ref=${loadmore} .dataset=${{ i: i, src: src, length: length, total: total }} loading="lazy" src=${imagePlaceholder} alt=${item.imageAlt} />
+      <img ref=${loadmore} .dataset=${{ i: i, src: src, length: length, total: total }} loading="lazy" alt=${item.imageAlt} />
     </picture >
     <div class="card-details">
       <ul>
