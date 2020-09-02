@@ -1,7 +1,8 @@
-const { existsSync } = require('fs');
-
+const { existsSync, readFileSync, writeFileSync } = require('fs');
 const { readFile } = require('fs').promises;
 
+// url
+const finalData = [];
 const nullData = {
     lighthouse: {
         version: '6.1.0',
@@ -39,27 +40,23 @@ const nullData = {
     axe: { passes: 0, violations: 0 }
 };
 
-module.exports = async () => {
+const loop = async () => {
     const dataNewText = await readFile('./src_site/sitesData.json', { encoding: 'utf8' });
     const dataNew = await JSON.parse(dataNewText);
 
-    // url
-    const finalData = [];
-    dataNew.forEach(async (item, i) => {
+    dataNew.forEach((item, i) => {
+        // if (i < 10) {
         const newItem = item;
-        item.id = i
+        item.id = i;
         const x = new URL(item.href);
         const filename = x.host.replace(/^\www./, '');
         const file = `./src_data/${filename}.json`;
 
         if (existsSync(file)) {
-
-            const lighthouseText = await readFile(file, { encoding: 'utf8' });
-            const lighthouse = await JSON.parse(lighthouseText);
-
+            const lighthouseText = readFileSync(file, { encoding: 'utf8' });
+            const lighthouse = JSON.parse(lighthouseText);
 
             if (lighthouse && !lighthouse.error) {
-
                 newItem.lighthouse = lighthouse.lighthouse
                 newItem.firstContentfulPaint = lighthouse.firstContentfulPaint
                 newItem.speedIndex = lighthouse.speedIndex
@@ -76,11 +73,15 @@ module.exports = async () => {
                 finalData.push({ ...newItem, ...nullData })
             }
         } else {
-
             finalData.push({ ...newItem, ...nullData })
-
         }
+        // }
     })
+};
 
+module.exports = async () => {
+    await loop();
+
+    // console.log(finalData.length)
     return finalData
 }

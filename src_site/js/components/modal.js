@@ -61,8 +61,9 @@ function modalEncapsulation(modal) {
     img.src = imagePlaceholder;
     document.removeEventListener('keydown', element.keycontrol);
 
-    if (link)
+    if (link) {
       link.focus();
+    }
   }
 
   // Open

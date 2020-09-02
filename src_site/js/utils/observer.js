@@ -1,6 +1,5 @@
-const host = location.origin;
-
 export const loadmore = (element) => {
+  const host = location.origin;
   if (element.customObserver) element.customObserver.unobserve(element)
 
   element.customObserver = new IntersectionObserver((entries, observer) => {
