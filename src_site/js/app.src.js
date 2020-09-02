@@ -12,22 +12,23 @@ document.addEventListener('updated', () => render(
 ));
 
 // Get the data, update the store
-const dataString = document.querySelector('#data-source').innerHTML
-document.data = JSON.parse(dataString);
+// const dataString = document.querySelector('#data-source').innerHTML
+// document.data = JSON.parse(dataString);
 
-document.store.data = document.data.slice(0, document.dataLength);
+// document.store.data = document.data.slice(0, document.dataLength);
 
-function fetchData() {
-  fetch('/data.json')
-    .then(resp => resp.json())
-    .then(newData => {
-      document.data = newData;
-      document.store.data = document.data.slice(0, document.dataLength);
-    })
-    .catch(error => {
-      console.log('💩 we\'ve messed up big time');
-    });
-}
-requestIdleCallback(fetchData)
+// function fetchData() {
+fetch('/data.json')
+  .then(resp => resp.json())
+  .then(newData => {
+    document.data = newData;
+    document.store.data = document.data.slice(0, document.dataLength);
+  })
+  .catch(error => {
+    console.log('💩 we\'ve messed up big time');
+  });
+// }
+
+// requestIdleCallback(fetchData)
 
 navigation();
