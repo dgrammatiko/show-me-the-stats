@@ -1,7 +1,8 @@
-import { html } from "uhtml"
+import { html } from "uhtml";
 import { loadmore } from '../utils/observer.js';
-import { imagePlaceholder } from '../utils/image-placeholder.js'
-// import { renderModal } from './modal.js'
+import { imagePlaceholder } from '../utils/image-placeholder.js';
+import { renderModal } from './modal.js';
+
 let renderModal;
 
 function showModal(event) {
@@ -20,7 +21,7 @@ export const renderCard = (item, i, length, total) => {
   </div>
   <div class="card-body">
     <picture class="card-image">
-      <img ref=${loadmore} .dataset=${{ i: i, src: src, length: length, total: total }} loading="lazy" alt=${item.imageAlt} />
+      <img ref=${loadmore} .dataset=${{ i: i, src: src, length: length, total: total }} src=${imagePlaceholder} decoding="async" loading="lazy" alt=${item.imageAlt} />
     </picture >
     <div class="card-details">
       <ul>
