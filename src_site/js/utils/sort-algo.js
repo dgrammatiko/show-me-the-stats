@@ -3,8 +3,8 @@ export const sortData = ({ sortBy, direction }) => {
     let bA, aA;
 
     if (['performance', 'accessibility', 'seo', 'bestPrectices', 'carbon'].includes(sortBy)) {
-      bA = parseInt(b.lighthouse[sortBy], 10);
-      aA = parseInt(a.lighthouse[sortBy], 10);
+      bA = Math.floor(parseInt(b.lighthouse[sortBy], 10) * 100);
+      aA = Math.floor(parseInt(a.lighthouse[sortBy], 10) * 100);
     } else if (['title', 'date', 'id'].includes(sortBy)) {
       bA = b[sortBy];
       aA = a[sortBy];

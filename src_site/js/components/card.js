@@ -3,8 +3,6 @@ import { loadmore } from '../utils/observer.js';
 import { imagePlaceholder } from '../utils/image-placeholder.js';
 import { renderModal } from './modal.js';
 
-let renderModal;
-
 function showModal(event) {
   let element = event.target;
   const data = document.store.data[element.dataset.i];
