@@ -10,7 +10,7 @@ const renderCard = (item, i, length, total) => {
   </div>
   <div class="card-body">
     <picture class="card-image">
-      <img data-i="${i}" data-src="${src}" data-length="${length}" data-total="${total}" loading="lazy" src="${imagePlaceholder}" alt="${item.imageAlt}" />
+      <img data-i="${i}" data-src="${src}" data-length="${length}" data-total="${total}" loading="lazy" src="${imagePlaceholder}" alt="${item.imageAlt}" width="280" height="210" />
     </picture >
     <div class="card-details">
       <ul>
