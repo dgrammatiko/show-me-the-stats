@@ -21,10 +21,10 @@ export const navigation = () => {
   render(
     document.querySelector('header'),
     html`<nav>
-      <ul style="display: flex; flex: 0 1; flex-direction: row;">
-        <li style="display: flex; flex: 0 1; flex-direction: row;">
-          <label for="order" style="align-self: center">Order: </label>
-          <select id="order" style="align-self: center; min-width: 220px" onchange=${sortIt}>
+      <ul style="display: flex; flex: 1 0; flex-direction: inherit; flex-wrap: wrap; justify-content: center;">
+        <li>
+          <label for="order">Order: </label>
+          <select id="order" style="min-width: 220px" onchange=${sortIt}>
             <option value="id">📅 Added</option>
             <option value="title">🆒 Name</option>
             <option value="performance">🏎 Performance</option>
@@ -34,9 +34,9 @@ export const navigation = () => {
             <option value="carbon">🌲 Carbon footprint</option>
           </select>
         </li>
-        <li style="display: flex; flex: 0 1; flex-direction: row;">
-          <label for="direction" style="align-self: center">Direction: </label>
-          <select id="direction" style="align-self: center; min-width: 140px" onchange=${changeDirection}>
+        <li>
+          <label for="direction">Direction: </label>
+          <select id="direction" style="min-width: 140px" onchange=${changeDirection}>
             <option value="desc">⏬ Desc</option>
             <option value="asc">⏫ Asc</option>
           </select>
