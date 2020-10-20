@@ -23,6 +23,7 @@ fetch('/data.json')
   .then(newData => {
     document.data = newData;
     document.store.data = document.data.slice(0, document.dataLength);
+    console.log(newData)
   })
   .catch(error => {
     console.log('💩 we\'ve messed up big time');

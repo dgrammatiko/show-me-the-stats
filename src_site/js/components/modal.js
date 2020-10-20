@@ -100,13 +100,13 @@ export const renderModal = (where, data, index) => {
       <picture class="card-image">
         <img loading="lazy" src=${imagePlaceholder} data-src=${image} alt=${data.imageAlt} ref=${imageLoad} />
       </picture>
-      <a href="#">test</a>
+      <a href="${data.href}" target="_blank">Visit ${data.title}</a>
       <ul>
-        <li>Performace: <span>${data.lighthouse.performance}%</span></li>
-        <li>First contentful paint:<span>${data.firstContentfulPaint.toFixed(2)}Sec </span></li>
-        <li>Best practices: <span>${Math.round(data.lighthouse.bestPractices)}%</span></li>
-        <li>Accessibility:<span>${Math.round(data.lighthouse.accessibility)}%</span></li>
-        <li>SEO: <span>${Math.round(data.lighthouse.seo)}%</span></li>
+        <li>Performace: <span>${Math.round(data.lighthouse.performance * 100)}%</span></li>
+        <li>First contentful paint:<span>${(data.firstContentfulPaint / 1000).toFixed(3)}Sec </span></li>
+        <li>Best practices: <span>$${Math.round(data.lighthouse.bestPractices * 100)}%</span></li>
+        <li>Accessibility:<span>${Math.round(data.lighthouse.accessibility * 100)}%</span></li>
+        <li>SEO: <span>${Math.round(data.lighthouse.seo * 100)}%</span></li>
         <li>carbon footprint: <span>${data.lighthouse.carbon}</span></li>
       </ul>
       <p>${data.text}</p>
