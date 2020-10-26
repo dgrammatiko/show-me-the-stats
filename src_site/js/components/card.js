@@ -28,7 +28,7 @@ export const renderCard = (item, i, length, total) => {
         </li>
         <li>
           FCP:
-              <span>${(item.firstContentfulPaint / 1000).toFixed(3)}Sec </span>
+              <span>${(item.firstContentfulPaint / 1000).toFixed(1)}s</span>
         </li>
         <li>
           Best practices:

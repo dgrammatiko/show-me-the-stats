@@ -28,6 +28,7 @@ export const navigation = () => {
             <option value="id">📅 Added</option>
             <option value="title">🆒 Name</option>
             <option value="performance">🏎 Performance</option>
+            <option value="firstContentfulPaint">👩‍🎨 FCP</option>
             <option value="accessibility">♿️ Accessibility</option>
             <option value="bestPractices">♻️ Best Practices</option>
             <option value="seo">🌐 SEO</option>
