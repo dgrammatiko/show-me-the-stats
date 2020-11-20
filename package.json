@@ -4,7 +4,7 @@
   "description": "Show me the stats",
   "scripts": {
     "rollup": "rollup --config rollup.config.js",
-    "build": "npx eleventy build",
+    "build": "npx eleventy",
     "scrape": "node ./scripts/scrape.js",
     "deploy": "npm run rollup && npm run build",
     "lighthouse": "node ./scripts/lighthouse.js"
