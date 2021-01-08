@@ -28,6 +28,6 @@
   "dependencies": {
     "ce-theme-switcher": "0.0.3",
     "lighterhtml": "4.1.1",
-    "uhtml": "2.2.0"
+    "uhtml": "2.2.1"
   }
 }
