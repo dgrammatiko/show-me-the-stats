@@ -1,31 +1,32 @@
-# name: Lighthouse gather data 100-200 CI
-# on: [push, pull_request]
-# env:
-#   CI: true
+name: Lighthouse gather data 100-200 CI
+on: [push, pull_request]
+env:
+  CI: true
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     strategy:
-#       matrix:
-#         node-version: [14]
-#     steps:
-#     - uses: actions/checkout@v2
-#       with:
-#         ref: ${{ github.head_ref }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
 
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       uses: actions/setup-node@v1
-#       with:
-#         node-version: ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
 
-#     - name: Install NPM dependencies
-#       run: npm ci
+    - name: Install NPM dependencies
+      run: npm ci
 
-#     - name: Lighthouse
+    - name: Lighthouse
 #       run: npm run lighthouse
+      run: npm run rollup && npm run build
 
-#     - uses: stefanzweifel/git-auto-commit-action@v3.0.0
-#       with:
-#         commit_message: Adding automatic Image/Lighthouse data collection changes...
-#         branch: ${{ github.head_ref }}
+    - uses: stefanzweifel/git-auto-commit-action@v3.0.0
+      with:
+        commit_message: Adding automatic Image/Lighthouse data collection changes...
+        branch: ${{ github.head_ref }}
