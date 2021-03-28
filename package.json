@@ -19,7 +19,7 @@
     "performance-leaderboard": "4.0.0",
     "puppeteer": "8.0.0",
     "request": "2.88.2",
-    "rollup": "2.42.4",
+    "rollup": "2.43.1",
     "rollup-plugin-minify-html-literals": "1.2.6",
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-terser": "7.0.2",
