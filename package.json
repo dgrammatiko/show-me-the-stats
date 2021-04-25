@@ -16,7 +16,7 @@
     "glob": "7.1.6",
     "html-minifier": "4.0.0",
     "image-downloader": "4.0.2",
-    "performance-leaderboard": "4.1.0",
+    "performance-leaderboard": "4.2.0",
     "puppeteer": "9.0.0",
     "request": "2.88.2",
     "rollup": "2.45.2",
