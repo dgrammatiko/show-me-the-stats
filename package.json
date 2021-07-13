@@ -15,7 +15,7 @@
     "@11ty/eleventy": "github:11ty/eleventy#master",
     "glob": "7.1.7",
     "html-minifier": "4.0.0",
-    "image-downloader": "4.0.2",
+    "image-downloader": "4.0.3",
     "performance-leaderboard": "5.1.0",
     "puppeteer": "10.0.0",
     "request": "2.88.2",
