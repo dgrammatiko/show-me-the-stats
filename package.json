@@ -17,7 +17,7 @@
     "html-minifier": "4.0.0",
     "image-downloader": "4.0.3",
     "performance-leaderboard": "5.2.0",
-    "puppeteer": "10.0.0",
+    "puppeteer": "10.2.0",
     "request": "2.88.2",
     "rollup": "2.56.3",
     "rollup-plugin-minify-html-literals": "1.2.6",
