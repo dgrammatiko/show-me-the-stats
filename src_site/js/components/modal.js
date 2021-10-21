@@ -64,6 +64,11 @@ function modalEncapsulation(modal) {
     if (link) {
       link.focus();
     }
+
+    render(
+      document.getElementById('modal'),
+      html`<div></div>`
+    );
   }
 
   // Open
