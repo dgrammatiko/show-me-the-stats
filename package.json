@@ -22,7 +22,7 @@
     "request": "2.88.2",
     "rollup": "2.56.3",
     "rollup-plugin-minify-html-literals": "1.2.6",
-    "rollup-plugin-node-resolve": "5.2.0",
+    "@rollup/plugin-node-resolve": "6.0.0",
     "rollup-plugin-terser": "7.0.2",
     "sharp": "0.29.0"
   },
